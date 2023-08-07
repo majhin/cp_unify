@@ -46,7 +46,7 @@ module.exports.addStudent = async function (req, res) {
 			return res.redirect("/tasks/students");
 		}
 	} catch (error) {
-		// console.log(error);
+		console.log(error);
 		req.flash("message", "Error adding student. Please Contact IT");
 		return res.redirect("/tasks/students");
 	}
@@ -72,7 +72,7 @@ module.exports.studentDetails = async function (req, res) {
 			});
 		}
 	} catch (error) {
-		// console.log(error);
+		console.log(error);
 		req.flash(
 			"message",
 			"Error loading details for student. Please Contact IT"
@@ -102,7 +102,7 @@ module.exports.updateStudentDetails = async function (req, res) {
 			}
 		}
 	} catch (error) {
-		// console.log(error);
+		console.log(error);
 		req.flash(
 			"message",
 			"Student details could not be updated. Please Contact IT"

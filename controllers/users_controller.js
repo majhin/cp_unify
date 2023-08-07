@@ -38,7 +38,6 @@ module.exports.createSession = function (req, res) {
 
 //Creates the user, duplicate email or empID not allowed
 module.exports.createUser = async function (req, res) {
-	console.log(req.body.email, req.body.password, req.body.empID);
 	let userEmpID = await Users.findOne({ empID: req.body.empID });
 	let userEmail = await Users.findOne({ email: req.body.email });
 
@@ -112,7 +111,7 @@ module.exports.updatePassword = async function (req, res) {
 			return res.redirect("/");
 		}
 	} catch (error) {
-		// console.log("Error in changing the password", error);
+		console.log(error);
 		req.flash("message", `Error in changing the password`);
 		return res.redirect("/");
 	}

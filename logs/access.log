@@ -1,0 +1,8 @@
+::1 - - [07/Aug/2023:07:47:48 +0000] "GET / HTTP/1.1" 200 2302 "http://localhost:9000/users/profile" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+::1 - - [07/Aug/2023:07:47:57 +0000] "POST /users/create-session HTTP/1.1" 302 72 "http://localhost:9000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+::1 - - [07/Aug/2023:07:47:59 +0000] "GET /users/profile HTTP/1.1" 200 12775 "http://localhost:9000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+::1 - - [07/Aug/2023:07:48:24 +0000] "GET /tasks/batches HTTP/1.1" 304 - "http://localhost:9000/users/profile" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+::1 - - [07/Aug/2023:07:48:47 +0000] "POST /users/sign-out HTTP/1.1" 302 46 "http://localhost:9000/tasks/batches" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+::1 - - [07/Aug/2023:07:48:47 +0000] "GET / HTTP/1.1" 200 2329 "http://localhost:9000/tasks/batches" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+::1 - - [07/Aug/2023:07:49:06 +0000] "POST /users/create-session HTTP/1.1" 302 46 "http://localhost:9000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
+::1 - - [07/Aug/2023:07:49:06 +0000] "GET / HTTP/1.1" 200 2302 "http://localhost:9000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"

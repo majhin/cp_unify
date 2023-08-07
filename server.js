@@ -1,10 +1,19 @@
 require("dotenv").config(); //config for environment variables
 
 const express = require("express");
+const logger = require("morgan");
+const rfs = require("rotating-file-stream");
+const path = require("path");
+
+// create a rotating write stream
+const accessLogStream = rfs.createStream("access.log", {
+	interval: "1d", // rotate daily
+	path: path.join(__dirname, "logs"),
+});
+
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const expressLayouts = require("express-ejs-layouts");
-const path = require("path");
 const db = require("./config/mongoose");
 
 //session and auth
@@ -62,6 +71,9 @@ app.use(passport.setAuthenticatedUser);
 //sets the flash in locals
 app.use(flash());
 app.use(customWare.setFlash);
+
+// setup the logger
+app.use(logger("combined", { stream: accessLogStream }));
 
 //Router access
 app.use("/", require("./routes/index_routes"));
