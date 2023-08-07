@@ -1,0 +1,37 @@
+<h1>Results</h1>
+<a class="btn btn-primary" href="/tasks/results/download" role="button"
+	>Download Results</a
+>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Student Email</th>
+			<th>Student Name</th>
+			<th>Student College</th>
+			<th>Student Status</th>
+			<th>DSA Final Score</th>
+			<th>WebD Final Score</th>
+			<th>React Final Score</th>
+			<th>Interview Date</th>
+			<th>Interview Company</th>
+			<th>Interview Result</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% results.forEach(result => { %>
+		<tr>
+			<td><%= result.student.email %></td>
+			<td><%= result.student.name %></td>
+			<td><%= result.student.college %></td>
+			<td><%= result.student.status ? "Placed" : "Not Placed" %></td>
+			<td><%= result.student.courseScores.DSA %></td>
+			<td><%= result.student.courseScores.WebD %></td>
+			<td><%= result.student.courseScores.React %></td>
+			<td><%=`${result.interview.date}`.split(" 05:30:00")[0] %></td>
+			<td><%= result.interview.companyName %></td>
+			<td><%= result.result %></td>
+		</tr>
+
+		<% }) %>
+	</tbody>
+</table>

@@ -1,0 +1,17 @@
+<div class="row mx-1 my-1">
+	<% jobs.forEach(job => { %>
+	<div class="col-sm-4">
+		<div class="card">
+			<h5 class="card-header"><%= job.title %></h5>
+			<div class="card-body">
+				<h5 class="card-title">Company : <%= job.company.display_name %></h5>
+				<h6 class="card-title">Salary : <%= job.salary_min %></h6>
+				<p class="card-text"><%= job.description %></p>
+				<a href="<%= job.redirect_url %>" class="btn btn-primary"
+					>Check it Out</a
+				>
+			</div>
+		</div>
+	</div>
+	<% }) %>
+</div>

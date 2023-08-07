@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-center">
+	<form method="post" action="/users/update-password">
+		<div class="row mb-3">
+			<label for="empID" class="form-label">Employee ID</label>
+			<input
+				type="text"
+				name="empID"
+				class="form-control"
+				id="empID"
+				placeholder="Enter your Employee ID"
+				required
+			/>
+		</div>
+		<div class="row mb-3">
+			<label for="email" class="form-label">Email address</label>
+			<input
+				type="email"
+				name="email"
+				class="form-control"
+				id="email"
+				placeholder="Enter your company Email"
+				required
+			/>
+		</div>
+		<div class="row mb-3">
+			<label for="old" class="form-label">Old Password</label>
+			<input
+				type="password"
+				name="old"
+				class="form-control"
+				id="old"
+				placeholder="Enter your old password"
+				required
+			/>
+		</div>
+		<div class="row mb-3">
+			<label for="new" class="form-label">New Password</label>
+			<input
+				type="password"
+				name="new"
+				class="form-control"
+				id="new"
+				placeholder="Enter your new password"
+				required
+			/>
+		</div>
+		<button type="submit" class="btn btn-primary">Update Password</button>
+	</form>
+</div>

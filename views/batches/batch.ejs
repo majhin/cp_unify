@@ -1,0 +1,37 @@
+<h1>Batches</h1>
+<div class="d-flex justify-content-center">
+	<form method="post" action="/tasks/create-batch">
+		<div class="row mb-3">
+			<label for="name" class="form-label">Batch Name</label>
+			<input
+				type="text"
+				name="name"
+				class="form-control"
+				id="name"
+				placeholder="Enter Batch Name...BTC###"
+				required
+			/>
+		</div>
+		<button type="submit" class="btn btn-primary mb-5">Create Batch</button>
+	</form>
+</div>
+<div class="d-flex justify-content-center mt-3">
+	<div class="list-group col-sm-5">
+		<ul class="list-group">
+			<% if (allBatches) { %> <% allBatches.forEach(batch => { %>
+			<li
+				class="list-group-item d-flex justify-content-Around align-items-center"
+			>
+				<a
+					href="/tasks/batch/<%= batch.id %>"
+					class="list-group-item list-group-item-action"
+					><%= batch.name %></a
+				>
+				<span class="badge bg-primary rounded-pill"
+					><%= batch.students.length %></span
+				>
+			</li>
+			<% }) %> <% } %>
+		</ul>
+	</div>
+</div>

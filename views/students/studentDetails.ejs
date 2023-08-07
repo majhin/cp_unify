@@ -1,0 +1,89 @@
+<h1><%= student.name %></h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">Batch#</th>
+			<th scope="col">Email</th>
+			<th scope="col">College</th>
+			<th scope="col">DSA Score</th>
+			<th scope="col">WebD Score</th>
+			<th scope="col">React Score</th>
+			<th scope="col">Status</th>
+			<th scope="col">Update</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<form method="post" action="/tasks/update-student-details/<%= student.id %>">
+				<td><%= student.batch.name %></td>
+				<td><%= student.email %></td>
+				<td><%= student.college %></td>
+				<td>
+					<input
+						type="number"
+						name="DSA"
+						min="0"
+						max="100"
+						value="<%= student.courseScores.DSA %>"
+					/>
+				</td>
+				<td>
+					<input
+						type="number"
+						name="WebD"
+						min="0"
+						max="100"
+						value="<%= student.courseScores.WebD %>"
+					/>
+				</td>
+				<td>
+					<input
+						type="number"
+						name="React"
+						min="0"
+						max="100"
+						value="<%= student.courseScores.React %>"
+					/>
+				</td>
+				<td><select name="status" id="">
+					<option value="true" <%= (student.status == true ? "selected" : "")%>>Placed</option>
+					<option value="false" <%= (student.status == false ? "selected" : "")%>>Not Placed</option>
+				</select></td>
+				<td>
+					<button type="submit" class="btn btn-success">Update Details</button>
+				</td>
+			</form>
+		</tr>
+	</tbody>
+</table>
+<p>
+	Interviews Given : <%= student.interview.length == 0 ? "None" : "As Follows"%>
+</p>
+
+<% if (student.interview.length !=0) { %>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Company Name</th>
+			<th scope="col">Interview Date</th>
+			<th scope="col">Result</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% let i=1 %> <% results.forEach(result => { %>
+		<tr>
+			<th scope="row"><%=i++%></th>
+			<td><%= result.interview.companyName %></td>
+			<td><%=`${result.interview.date}`.split(" 05:30:00")[0] %></td>
+			<td><%= result.result %></td>
+		</tr>
+		<% }) %>
+	</tbody>
+</table>
+<% } %>
+
+<button class="btn btn-sm btn-outline-secondary">
+	<a class="nav-link" href="/tasks/batch/<%= student.batch.id %>">Go Back</a>
+</button>

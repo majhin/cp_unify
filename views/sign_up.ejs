@@ -1,0 +1,36 @@
+<h2 class="text-center">Sign Up</h2>
+<div class="d-flex justify-content-center">
+	<form method="post" action="/users/create-user">
+		<div class="row mb-3">
+			<label for="empID" class="form-label">Employee ID</label>
+			<input
+				type="text"
+				name="empID"
+				class="form-control"
+				id="empID"
+				placeholder="Enter your empID"
+			/>
+		</div>
+		<div class="row mb-3">
+			<label for="email" class="form-label">Email address</label>
+			<input
+				type="email"
+				name="email"
+				class="form-control"
+				id="email"
+				placeholder="Enter your company Email"
+			/>
+		</div>
+		<div class="row mb-3">
+			<label for="password" class="form-label">Password</label>
+			<input
+				type="password"
+				name="password"
+				class="form-control"
+				id="password"
+				placeholder="Enter a desired password"
+			/>
+		</div>
+		<button type="submit" class="btn btn-primary">Sign Up</button>
+	</form>
+</div>

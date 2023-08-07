@@ -1,0 +1,94 @@
+<div class="d-flex justify-content-center">
+	<form class="mt-4" method="post" action="/tasks/add-student">
+		<div class="row mb-3 ms-sm-1">
+			<div class="col-6">
+				<label for="name" class="form-label">Student Name</label>
+				<input
+					type="text"
+					name="name"
+					class="form-control"
+					id="name"
+					placeholder="Enter Student Name"
+					required
+				/>
+			</div>
+			<div class="col-6">
+				<label for="email" class="form-label">Student Email</label>
+				<input
+					type="email"
+					name="email"
+					class="form-control"
+					id="email"
+					placeholder="Enter Student Email"
+					required
+				/>
+			</div>
+		  </div>
+				<div class=" row w-100 mb-3 ms-sm-1"> 
+			<label for="college" class="form-label">Student College</label>
+			<input
+				type="text"
+				name="college"
+				class="form-control ms-sm-2 "
+				id="college"
+				placeholder="Type Backbencher if No College"
+				required
+			/>
+			</div>
+			<div class="row mb-3 ms-sm-1">
+				<div class="col">
+					<label for="status" class="form-label">Placement Status</label>
+					<select class="form-control" name="status" id="status">
+						<option value="true">Placed</option>
+						<option value="false">Not placed</option>
+					</select>
+				</div>
+				<div class="col">
+					<label for="batch" class="form-label">Batch to Assign</label>
+					<select class="form-control" name="batch" id="batch">
+						<% if (allBatches) { %> <% allBatches.forEach(batch => { %>
+						<option value="<%= batch.id %>"><%= batch.name %></option>
+						<% }) %> <% } %>
+					</select>
+				</div>
+			  </div>
+		</div>
+		<div class="d-flex justify-content-center">
+			<button type="submit" class="btn btn-primary m-auto">Add Student</button>
+		</div>
+	</form>
+</div>
+
+<p class="h3">All Students List</p>
+
+<% if (allStudents) { %>
+<table class="table ps-2">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Batch ID</th>
+			<th scope="col">Name</th>
+			<th scope="col">Email</th>
+			<th scope="col">College</th>
+			<th scope="col">Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% if (allStudents) { %>
+		<%let i=1; allStudents.forEach(student => { %>
+			
+		<tr>
+			<th scope="row"><%=i++%></th>
+			
+			<td><%= student.batch.name %></td>
+			<td> <a href="/tasks/student-details/<%= student.id %>"><%= student.name %></a></td>
+			<td><%= student.email %></td>
+			<td><%= student.college %></td>
+			<td><%= (student.status ? "Placed" : "Not placed") %></td>
+			
+		</tr>
+		<% }) %>
+		<% } %>
+	</tbody>
+</table>
+<% } %>

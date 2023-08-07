@@ -1,0 +1,101 @@
+<h2><%= interview.companyName %></h2>
+<h4><%= `${interview.date}`.split(" 05:30:00")[0] %></h4>
+<form action="/tasks/interview/mark-result/<%= interview.id %>" method="post">
+	<div class="d-flex justify-content-center">
+		<button type="submit" class="btn btn-primary m-auto">
+			Update Result
+		</button>
+	</div>
+<p>Students assigned to this interview</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Student Name</th>
+			<th scope="col">Student Email</th>
+			<th scope="col">Interview Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% let i=1; students.forEach(student => { %> 
+			<% if (student.interview.includes(interview.id)) { %>
+				<tr>
+				<th scope="row"><%= i++ %></th>
+			<td><label for="result<%= student.id %>"><%= student.name %></label></td>
+			<td><label for="result<%= student.id %>"><%= student.email %></label></td>
+			<td class="h-25">
+			<% if (resultsStudentIDArray.includes(student.id)) { %>
+				<% results.forEach(result => { %>
+				 <% if (result.student == student.id) { %>
+					
+					<select class="form-select w-50 h-auto " name="result" id="result<%= student.id %>"  >
+						<option value="<%= student.id %>#PASS" selected >PASS</option>
+						<option value="<%= student.id %>#FAIL" <%= result.result == "FAIL" ? "selected" : "" %> >FAIL</option>
+						<option value="<%= student.id %>#OnHold" <%= result.result == "OnHold" ? "selected" : "" %> >On Hold</option>
+						<option value="<%= student.id %>#NA" <%= result.result == "NA" ? "selected" : "" %> >Didn't Attempt</option>
+					</select>
+				 <% } %>
+				<% }) %>
+			<% } else { %>
+				<select class="form-select w-50 h-auto " name="result" id="result<%= student.id %>"  >
+					<option value="<%= student.id %>#PASS">PASS</option>
+					<option value="<%= student.id %>#FAIL">FAIL</option>
+					<option value="<%= student.id %>#OnHold">On Hold</option>
+					<option value="<%= student.id %>#NA" selected>Didn't Attempt</option>
+				</select>
+				<% }  %>
+			</td>
+		</tr>
+			<% }  %> <% }) %>
+	</tbody>
+</table>
+</form>
+
+
+
+
+
+
+	<form class="mt-4" method="post" action="/tasks/interview/add-students/<%= interview.id %>">
+		<label class="form-label">Select Students To Add</label>
+		<div class="d-flex justify-content-center">
+			<button type="submit" class="btn btn-primary m-auto">
+				Add Students
+			</button>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Student Name</th>
+					<th scope="col">Student Email</th>
+					<th>Add to Interview</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% let j=1; students.forEach(student => { %> 
+					<% if (!student.interview.includes(interview.id)) { %>
+					<tr>
+						<th><%= j++ %></th>
+						
+						<td><label class="form-label" for="<%= student.id %>"><%= student.name %></label></td>
+						<td><label class="form-label" for="<%= student.id %>"><%= student.email %></label></td>
+						<td>
+							<input
+						type="checkbox"
+						name="studentID"
+						class="form-check-input w-25 "
+						id="<%= student.id %>"
+						value="<%= student.id %>"
+					/>
+					
+						</td>
+					</tr>
+			<% } %>
+			<% }) %>
+			</tbody>
+		</table>
+			
+			
+		
+	</form>
