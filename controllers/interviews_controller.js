@@ -1,8 +1,9 @@
 const Students = require("../models/student");
 const Interviews = require("../models/interview");
 const Results = require("../models/result");
-const moment = require("moment");
+const moment = require("moment"); //Date manipulation library
 
+//Provides all the interviews registered
 module.exports.allInterviews = async function (req, res) {
 	try {
 		let interviews = await Interviews.find({});
@@ -18,6 +19,7 @@ module.exports.allInterviews = async function (req, res) {
 	}
 };
 
+//Adds the interview, gives a message if date is before today
 module.exports.addInterviews = async function (req, res) {
 	let date = moment.utc(req.body.date, moment.ISO_8601);
 	let today = moment().utc().startOf("day");
@@ -41,6 +43,7 @@ module.exports.addInterviews = async function (req, res) {
 	}
 };
 
+//Provides selected interview details and students added to it with their result
 module.exports.interviewDetails = async function (req, res) {
 	try {
 		let interview = await Interviews.findById(req.params.interviewID);
@@ -65,6 +68,7 @@ module.exports.interviewDetails = async function (req, res) {
 	}
 };
 
+//Adds the selected students to the interview shown
 module.exports.addStudentsToInterview = async function (req, res) {
 	if (req.body) {
 		async function assignStudentsToInterview(interviewId, studentIds) {
@@ -106,6 +110,7 @@ module.exports.addStudentsToInterview = async function (req, res) {
 	}
 };
 
+//Creates and updates the result for the students added to interview
 module.exports.markResultsForInterview = async function (req, res) {
 	let results = [];
 	if (typeof req.body.result == "object") {

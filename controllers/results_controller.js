@@ -2,10 +2,11 @@ const Students = require("../models/student");
 const Interviews = require("../models/interview");
 const Results = require("../models/result");
 
-const createCsvWriter = require("csv-writer").createObjectCsvWriter;
+const createCsvWriter = require("csv-writer").createObjectCsvWriter; //Library to generate CSV
 const path = require("path");
 const fs = require("fs");
 
+//Creates the table of results present
 function createTableData(results) {
 	return new Promise((resolve, reject) => {
 		let tableArray = [];
@@ -34,6 +35,7 @@ function createTableData(results) {
 	});
 }
 
+//Provides all results
 module.exports.allResults = async function (req, res) {
 	try {
 		let results = await Results.find({})
@@ -50,6 +52,7 @@ module.exports.allResults = async function (req, res) {
 	}
 };
 
+//Allows to download results in CSV and store it on the server, when downloaded, deletes the file
 module.exports.downloadResults = async function (req, res) {
 	const filePath = path.join(__dirname, "CSVs");
 	let fileName = Date.now();

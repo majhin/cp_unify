@@ -44,6 +44,7 @@ passport.deserializeUser(async function (id, done) {
 	}
 });
 
+//checking auth for the current user
 passport.checkAuthentication = function (req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
@@ -51,6 +52,7 @@ passport.checkAuthentication = function (req, res, next) {
 	return res.redirect("/");
 };
 
+//disabling sign in for user if already logged in
 passport.disableSignIn = function (req, res, next) {
 	if (req.isAuthenticated()) {
 		return res.redirect("/users/profile");
@@ -59,6 +61,7 @@ passport.disableSignIn = function (req, res, next) {
 	next();
 };
 
+//sets the current authenticated user to the locals
 passport.setAuthenticatedUser = function (req, res, next) {
 	if (req.isAuthenticated()) {
 		res.locals.user = req.user;

@@ -4,7 +4,7 @@ const passport = require("passport");
 
 const usersController = require("../controllers/users_controller.js");
 
-// Dispplay the Sign-up form
+// Display the Sign-up form
 router.get("/sign-up", usersController.signUp);
 
 //Logging in and creating session (stored in db)

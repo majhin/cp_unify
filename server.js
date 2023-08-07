@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv").config(); //config for environment variables
 
 const express = require("express");
 const cookieParser = require("cookie-parser");
@@ -16,9 +16,11 @@ const MongoStore = require("connect-mongo");
 const app = express();
 const port = process.env.PORT || 9000;
 
+//flash messages (toasts)
 const flash = require("connect-flash");
 const customWare = require("./config/middleware");
 
+//Using URL encoded header
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
@@ -27,16 +29,16 @@ app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
 app.set("layout", "layout.ejs");
 app.use(expressLayouts);
+
 //for the link tag to appear in head of layout
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
-app.use(express.static(path.join(__dirname, "/node_modules/bootstrap/dist")));
+app.use(express.static(path.join(__dirname, "/node_modules/bootstrap/dist"))); //Using bootstrap
 
 //Mongo store is used to store the session cookie in the db
 app.use(
 	session({
 		name: "cp_unified",
-		//ToDo change secret in prod mode
 		secret: process.env.SECRET,
 		saveUninitialized: false,
 		resave: false,
@@ -50,14 +52,18 @@ app.use(
 	})
 );
 
+//Passport init
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Sets the authenticated user in locals
 app.use(passport.setAuthenticatedUser);
 
+//sets the flash in locals
 app.use(flash());
 app.use(customWare.setFlash);
 
+//Router access
 app.use("/", require("./routes/index_routes"));
 
 app.listen(port, () => {

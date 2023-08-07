@@ -2,6 +2,7 @@ const Students = require("../models/student");
 const Batches = require("../models/batch");
 const Results = require("../models/result");
 
+//Provides all the students registered
 module.exports.allStudents = async function (req, res) {
 	try {
 		let allBatches = await Batches.find({});
@@ -18,13 +19,16 @@ module.exports.allStudents = async function (req, res) {
 	}
 };
 
+//Add a new student, email cannot be duplicate(message is shown if that's the case)
 module.exports.addStudent = async function (req, res) {
 	try {
 		let student = await Students.findOne({ email: req.body.email });
 		if (student) {
-			return res.send(
-				'<h3>Student already exists, Kindly check the current profile, <a href="/tasks/students">Go Back</a></h3>'
+			req.flash(
+				"message",
+				"Student already exists, Kindly check the current profile"
 			);
+			return res.redirect("/tasks/students");
 		}
 		let { name, email, college, status, batch } = req.body;
 		let newStudent = await Students.create({
@@ -48,6 +52,7 @@ module.exports.addStudent = async function (req, res) {
 	}
 };
 
+//Provides student details, result, marks, interviews associated
 module.exports.studentDetails = async function (req, res) {
 	try {
 		let student = await Students.findById(req.params.studentID)
@@ -76,6 +81,7 @@ module.exports.studentDetails = async function (req, res) {
 	}
 };
 
+//Updates the student details and marks
 module.exports.updateStudentDetails = async function (req, res) {
 	try {
 		let student = await Students.findById(req.params.studentID);
