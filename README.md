@@ -40,31 +40,32 @@ Run the development server: npm start
 The Company Data Management System provides an intuitive web interface for performing the following tasks:
 
 Sign up and log in for employees.
+
 Manage student details, including adding new students and updating their information.
+
 Schedule and manage interviews, including assigning students and marking results.
+
 Export data to CSV format for report generation.
+
 Bonus Feature: External Jobs List
+
 The bonus feature of the project fetches real available jobs in India for React and Node.js using external APIs. The jobs are displayed on a minimalistic page, and users can follow the provided links to apply directly.
 
 #################CSV Data Format#################
+
 The CSV export feature generates a CSV file with the following columns:
 
-Student ID
-Student Name
-Student College
-Student Status
-DSA Final Score
-WebD Final Score
-React Final Score
-Interview Date
-Interview Company
-Interview Student Result
+{Student ID ,Student Name, Student College, Student Status, DSA Final Score, WebD Final Score, React Final Score, Interview Date, Interview Company, Interview Student Result}
+
 Please note that each student may have multiple entries based on the interviews they have participated in.
 
 #################Contributing#################
+
 Contributions to the Company Data Management System project are welcome! If you have ideas for improvements or would like to report issues, please submit a pull request or open an issue on GitHub.
 
 #################License#################
+
 This project is licensed under the MIT License.
+
 
 Thank you for your interest in this project. For any further assistance or inquiries, please don't hesitate to contact us. Happy coding!
